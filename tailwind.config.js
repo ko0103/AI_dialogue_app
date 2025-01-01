@@ -5,5 +5,11 @@ module.exports = {
     './app/assets/stylesheets/**/*.css',
     './app/javascript/**/*.js'
   ],
+  theme: {
+    extend: {},
+    fontFamily: {
+      teko: ['Teko', 'sans-serif']
+    }
+  },
   plugins: [require("daisyui")],
 }
