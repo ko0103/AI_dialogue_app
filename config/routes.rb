@@ -17,4 +17,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root "top_pages#top"
+  resources :homes, only: [ :index ]
+
+  # chat_session
+  get "/chats", to: "chats#index"
+  post "/chats", to: "chats#create"
 end
