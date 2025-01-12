@@ -10,9 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_12_31_071444) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_11_071957) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ai_responses", force: :cascade do |t|
+    t.bigint "message_id", null: false
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["message_id"], name: "index_ai_responses_on_message_id"
+  end
+
+  create_table "chat_sessions", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "difficulty"
+    t.string "theme"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_chat_sessions_on_user_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "chat_session_id", null: false
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_session_id"], name: "index_messages_on_chat_session_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.string "name"
@@ -32,4 +59,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_12_31_071444) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
+
+  add_foreign_key "ai_responses", "messages"
+  add_foreign_key "chat_sessions", "users"
+  add_foreign_key "messages", "chat_sessions"
+  add_foreign_key "messages", "users"
 end

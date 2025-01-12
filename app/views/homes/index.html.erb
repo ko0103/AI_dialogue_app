@@ -1,0 +1,21 @@
+<main class="flex">
+  <div class="w-1/2 p-4">
+    <div class="border-l-4 border-blue-500 pl-4 py-2 shadow-xl rounded-md text-center">
+      <h2 class="text-3xl">哲学対話とは</h2>
+      <p>本アプリは以下のルールにならってAIと「対話」をするチャットアプリとなっています。</p>
+      <h3 class="text-2xl">1. 何を言ってもいい。</h3>
+      <h3 class="text-2xl">2. 人の言うことに対して否定的な態度をとらない。</h3>
+      <h3 class="text-2xl">3. 発言せず、ただ聞いているだけでもいい。</h3>
+      <h3 class="text-2xl">4. お互いに問いかけるようにする。</h3>
+      <h3 class="text-2xl">5. 知識ではなく、自分の経験に即して話す。</h3>
+      <h3 class="text-2xl">6. 話がまとまらなくてもいい。</h3>
+      <h3 class="text-2xl">7. 意見が変わってもいい。</h3>
+      <h3 class="text-2xl">8. 分からなくなってもいい。</h3>
+      <p class="text-right text-xs">（梶谷真司著『考えるとはどういうことか』2018年9月刊、幻冬舎新書 より）</p>
+    </div>
+  </div>
+  <div class="w-1/2 p-4">
+    <!-- 右側のボタンや導線をここに配置 -->
+    <%= link_to "対話開始", chats_path, class: "button bg-blue-500 text-white rounded px-4 py-2" %>
+  </div>
+</main>
