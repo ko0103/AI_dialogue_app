@@ -1,11 +1,11 @@
 <% chat_logs.each do |log| %>
   <% if log[:role] == "user" %>
     <div class="chat-message user-message">
-      <%= raw log[:content].gsub(/<p><strong>user:<\/strong> /, '').gsub(/<\/p>/,'') %>
+      <div class="chat-message user-message"><%= log[:content].html_safe %></div>
     </div>
   <% elsif log[:role] == "gemini" %>
     <div class="chat-message gemini-message">
-      <%= raw log[:content].gsub(/<p><strong>gemini:<\/strong> /, '').gsub(/<\/p>/,'') %>
+      <div class="chat-message gemini-message"><%= log[:content].html_safe %></div>
     </div>
   <% end %>
 <% end %>

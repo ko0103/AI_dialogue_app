@@ -22,19 +22,22 @@ app.use((req, res, next) => {
 app.post("/chat", async (req, res) => {
   try {
     const userInput = req.body.message;
-    console.log("Received message from Rails:", userInput); // ログ追加
+    const theme = req.body.theme;
+    console.log("Received message from Rails:", userInput, theme); // ログ追加
 
     if (!userInput) {
       return res.ststus(400).json({ error: "Message is required"});
     }
 
     // AIの役柄とルール設定
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", systemInstruction: "あなたはユーザーの考えを導く哲学に通じた先生であり、対等な立場の人間でもあります。" });
     const generationConfig = {
-      maxOutputTokens: 200,
+      maxOutputTokens: 50,
       temperature: 1.2,
     };
-    const systemPrompt = `あなたはユーザーの考えを導く哲学に通じた先生であり、対等な立場の人間でもあります。以下の哲学対話のルールに従って会話してください。
+    let systemPrompt = `あなたからの問いかけは最大でも2つまでにしてください。
+    またあなたからのテーマとユーザーからのメッセージに対する感想や回答も教えてください。
+    以下の哲学対話のルールに従って会話してください。
   - 何を言ってもいい。
   - 人の言うことに対して否定的な態度をとらない。
   - 発言せず、ただ聞いているだけでもいい。
@@ -44,6 +47,9 @@ app.post("/chat", async (req, res) => {
   - 意見が変わってもいい。
   - 分からなくなってもいい。
   `;
+    if (theme) {
+      systemPrompt = `現在のテーマは「${theme}」です。\n${systemPrompt}`;
+    }
   const chat = model.startChat({
     history: [
       {
@@ -55,6 +61,7 @@ app.post("/chat", async (req, res) => {
   const result = await chat.sendMessage(userInput, { generationConfig });
   const response = result.response;
   const geminiResponse = response.text();
+  console.log("Gemini API response:", { gemini: geminiResponse });
   res.json({ gemini: geminiResponse });
   } catch (error) {
     console.error("Gemini API error:", error);
