@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   # chat_session
   get "/chats", to: "chats#index"
   post "/chats", to: "chats#create"
+  get "/chats/new", to: "chats#new"
 end
