@@ -1,0 +1,13 @@
+<div class="container mx-auto p-4">
+  <div class="text-center mb-4">
+    <h2 class="text-2xl font-bold">チャット終了</h2>
+  </div>
+    <% if @score.present? %>
+        <p class="text-lg fonts-semibold">今回のスコア: <%= @score %> / 100</p>
+      <% else %>
+      <p class="text-lg fonts-semibold">スコアが取得できませんでした</p>
+    <% end %>
+    <div class="mt-4">
+    <%= link_to "ホームに戻る", homes_path, class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
+    </div>
+</div>

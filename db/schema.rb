@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_01_11_071957) do
+ActiveRecord::Schema[7.2].define(version: 2025_01_28_085153) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,6 +41,14 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_11_071957) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "scores", force: :cascade do |t|
+    t.bigint "chat_session_id", null: false
+    t.integer "score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["chat_session_id"], name: "index_scores_on_chat_session_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
@@ -64,4 +72,5 @@ ActiveRecord::Schema[7.2].define(version: 2025_01_11_071957) do
   add_foreign_key "chat_sessions", "users"
   add_foreign_key "messages", "chat_sessions"
   add_foreign_key "messages", "users"
+  add_foreign_key "scores", "chat_sessions"
 end
