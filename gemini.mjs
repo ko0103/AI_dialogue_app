@@ -23,7 +23,9 @@ app.post("/chat", async (req, res) => {
   try {
     const userInput = req.body.message;
     const theme = req.body.theme;
-    console.log("Received message from Rails:", userInput, theme); // ログ追加
+    const chatHistory = req.body.chatHistory;
+    const isLastMessage = req.body.isLastMessage;
+    console.log("Received message from Rails:", userInput, theme, chatHistory, isLastMessage); // ログ追加
 
     if (!userInput) {
       return res.ststus(400).json({ error: "Message is required"});
@@ -61,8 +63,22 @@ app.post("/chat", async (req, res) => {
   const result = await chat.sendMessage(userInput, { generationConfig });
   const response = result.response;
   const geminiResponse = response.text();
-  console.log("Gemini API response:", { gemini: geminiResponse });
-  res.json({ gemini: geminiResponse });
+
+  let score = null;
+  if (isLastMessage) {
+    const evaluationPrompt = `与えられたチャットログが、テーマに沿って論理的な会話ができているか0〜100でスコアで評価してください。\n スコアのみを整数で返してください。`;
+    const evaluationResult = await model.generateContent(evaluationPrompt + `
+      テーマ: ${theme}
+      チャットログ:\n${chatHistory.join("\n")}
+    `);
+    const evaluationResponse = evaluationResult.response;
+    const evaluationText = evaluationResponse.text();
+    const extractedScore = evaluationText.match(/(\d+)/);
+    score = extractedScore ? parseInt(extractedScore[0], 10) : null;
+    console.log("Gemini API evaluation response:", { evaluationResponse, score });
+  }
+  console.log("Gemini API response:", { gemini: geminiResponse, score: score });
+  res.json({ gemini: geminiResponse, score: score });
   } catch (error) {
     console.error("Gemini API error:", error);
     res.status(500).json({ error: "Failed to process Gemini API request" });

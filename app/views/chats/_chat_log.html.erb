@@ -1,11 +1,11 @@
 <% chat_logs.each do |log| %>
   <% if log[:role] == "user" %>
     <div class="chat-message user-message">
-      <div class="chat-message user-message"><%= log[:content].html_safe %></div>
+      <%= log[:content].html_safe %>
     </div>
   <% elsif log[:role] == "gemini" %>
     <div class="chat-message gemini-message">
-      <div class="chat-message gemini-message"><%= log[:content].html_safe %></div>
+      <%= log[:content].html_safe %>
     </div>
   <% end %>
 <% end %>

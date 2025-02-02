@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "scores/show"
   devise_for :users, controllers: {
     registrations: "users/registrations",
     sessions: "users/sessions"
@@ -23,4 +24,7 @@ Rails.application.routes.draw do
   get "/chats", to: "chats#index"
   post "/chats", to: "chats#create"
   get "/chats/new", to: "chats#new"
+
+  # score
+  get "score", to: "scores#show"
 end

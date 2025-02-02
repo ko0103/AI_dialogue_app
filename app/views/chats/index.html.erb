@@ -11,9 +11,10 @@
       <%= render partial: "chat_log", locals: { chat_logs: @chat_logs } %>
     <% end %>
   </div>
-
-  <form method="post" class="flex space-x-2" data-turbo="true">
-    <input type="text" name="message" id="message" class="border border-gray-300 rounded-md p-2 flex-grow">
-    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white rounded-md p-2">送信</button>
-  </form>
+  <div id="chat-form">
+    <% if @chat_session.present? && @chat_session.messages.count < 10 %>
+      <%= render partial: "chats/chat_form" %>
+    <% else %>
+      <%= render partial: "chats/score_link", locals: { chat_session: @chat_session } %>
+  <% end %>
 </div>
