@@ -12,4 +12,7 @@ bundle exec rails assets:clean
 
 bundle exec rails db:migrate
 # DISABLE_DATABASE_ENVIRONMENT_CHECK=1 bundle exec rake db:migrate:reset
-node gemini.mjs
+cd ../
+npm install
+npm start
+cd -
