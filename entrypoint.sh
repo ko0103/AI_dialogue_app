@@ -1,4 +1,7 @@
 #!/bin/bash
+# PATH環境変数の確認
+echo $PATH
+
 # Railsサーバーをバックグラウンドで起動
 bundle exec rails server &
 
