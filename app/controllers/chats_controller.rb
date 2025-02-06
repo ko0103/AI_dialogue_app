@@ -1,7 +1,7 @@
 require "net/http"
 require "uri"
 class ChatsController < ApplicationController
-  protect_from_forgery with: :exception
+  skip_forgery_protection
   def index
     user = current_user
     chat_session_id = session[:chat_session_id]
