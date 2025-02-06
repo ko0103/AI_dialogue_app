@@ -62,7 +62,7 @@ RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 # Copy Node.js API files
 COPY gemini.mjs ./
 
-RUN rm -rf node_modules
+# RUN rm -rf node_modules
 
 
 # Final stage for app image
@@ -78,6 +78,8 @@ RUN apt-get update -qq && \
     rm -rf /tmp/node-build-master && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
+# Copy node_modules directory
+COPY --from=build /rails/node_modules /rails/node_modules
 
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
