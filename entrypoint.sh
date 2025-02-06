@@ -1,3 +1,4 @@
+#!/bin/bash
 # Railsサーバーをバックグラウンドで起動
 bundle exec rails server &
 
