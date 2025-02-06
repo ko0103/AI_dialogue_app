@@ -82,8 +82,12 @@ USER 1000:1000
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
+# スクリプトを追加してRailsとNode.jsを起動
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
 EXPOSE 3001
 CMD ["./bin/rails", "server"]
-CMD ["bash", "-c", "node gemini.mjs"]
