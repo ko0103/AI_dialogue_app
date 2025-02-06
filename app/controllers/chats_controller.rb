@@ -79,7 +79,7 @@ class ChatsController < ApplicationController
     # uri = URI.parse("http://localhost:3001/chat")
 
     # デプロイ時に使用するチャットのURL
-    uri = URI.parse("https://ai-dialogue-app.onrender.com/chat")
+    uri = URI.parse("https://ai-dialogue-app-1.onrender.com/chat")
 
     chat_history = chat_session.messages.order(created_at: :asc).map do |message|
       gemini_response = message.ai_response

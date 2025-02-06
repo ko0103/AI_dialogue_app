@@ -59,6 +59,9 @@ RUN bundle exec bootsnap precompile app/ lib/
 RUN SECRET_KEY_BASE_DUMMY=1 ./bin/rails assets:precompile
 
 
+# Copy Node.js API files
+COPY gemini.mjs ./
+
 RUN rm -rf node_modules
 
 
@@ -68,6 +71,7 @@ FROM base
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
+COPY --from=build /rails/gemini.mjs /rails/gemini.mjs # Node.js
 
 # Run and own only the runtime files as a non-root user for security
 RUN groupadd --system --gid 1000 rails && \
@@ -80,4 +84,5 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD ["./bin/rails", "server"]
+EXPOSE 3001
+CMD ["bash", "-c", "./bin/rails && node gemini.mjs", "server"]
