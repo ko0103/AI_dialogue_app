@@ -19,7 +19,7 @@ app.use((req, res, next) => {
 });
 
 // チャットのエンドポイント
-app.post("/chat", async (req, res) => {
+app.post("/chats", async (req, res) => {
   try {
     const userInput = req.body.message;
     const theme = req.body.theme;
