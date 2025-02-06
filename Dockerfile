@@ -85,4 +85,5 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
 EXPOSE 3001
-CMD ["bash", "-c", "./bin/rails && node gemini.mjs", "server"]
+CMD ["./bin/rails", "server"]
+CMD ["bash", "-c", "node gemini.mjs"]
