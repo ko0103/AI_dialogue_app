@@ -68,6 +68,17 @@ RUN rm -rf node_modules
 # Final stage for app image
 FROM base
 
+# Node.jsをランタイムステージにもインストール
+ARG NODE_VERSION=20.18.1
+ENV PATH=/usr/local/node/bin:$PATH
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y curl && \
+    curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz -C /tmp/ && \
+    /tmp/node-build-master/bin/node-build "${NODE_VERSION}" /usr/local/node && \
+    rm -rf /tmp/node-build-master && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+
 # Copy built artifacts: gems, application
 COPY --from=build "${BUNDLE_PATH}" "${BUNDLE_PATH}"
 COPY --from=build /rails /rails
