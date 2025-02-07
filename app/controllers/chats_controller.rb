@@ -1,7 +1,7 @@
 require "net/http"
 require "uri"
 class ChatsController < ApplicationController
-  protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
   def index
     user = current_user
     chat_session_id = session[:chat_session_id]
@@ -77,7 +77,7 @@ class ChatsController < ApplicationController
     user_message = Message.create(user: user, chat_session: chat_session, content: message)
 
     # 開発時に使用するチャットのURL
-    # uri = URI.parse("http://localhost:3001/chat")
+    # uri = URI.parse("http://localhost:3001/chats")
 
     # デプロイ時に使用するチャットのURL
     uri = URI.parse("https://ai-dialogue-app-1.onrender.com/chats")
