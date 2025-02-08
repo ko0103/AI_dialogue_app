@@ -77,10 +77,10 @@ class ChatsController < ApplicationController
     user_message = Message.create(user: user, chat_session: chat_session, content: message)
 
     # 開発時に使用するチャットのURL
-    # uri = URI.parse("http://localhost:3001/chats")
+    uri = URI.parse("http://localhost:3001/chat")
 
     # デプロイ時に使用するチャットのURL
-    uri = URI.parse("https://ai-dialogue-app-1.onrender.com/chats")
+    # uri = URI.parse("https://ai-dialogue-app-1.onrender.com:3001/chat")
 
     chat_history = chat_session.messages.order(created_at: :asc).map do |message|
       gemini_response = message.ai_response
@@ -105,6 +105,7 @@ class ChatsController < ApplicationController
       score = gemini_data["score"]
 
       AiResponse.create(message: user_message, content: gemini_response)
+
        if is_last_message && score.present?
           score_record = Score.create(chat_session: chat_session, score: score.to_i) # スコアを保存
           session[:chat_score] = score_record.score

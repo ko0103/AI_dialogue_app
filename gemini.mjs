@@ -12,14 +12,14 @@ const genAI = new GoogleGenerativeAI(API_KEY)
 
 // アクセス許可
 app.use((req, res, next) => {
-  res.header("Access-Controll-Allow-Origin", "*");
-  res.header("Access-Controll-Allow-Methods", "GET, POST, PUT, DELETE");
-  res.header("Access-Controll-Allow-Headers", "Content-Type");
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
+  res.header("Access-Control-Allow-Headers", "Content-Type");
   next();
 });
 
 // チャットのエンドポイント
-app.post("/chats", async (req, res) => {
+app.post("/chat", async (req, res) => {
   try {
     const userInput = req.body.message;
     const theme = req.body.theme;
