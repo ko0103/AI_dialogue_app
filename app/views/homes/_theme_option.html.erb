@@ -1,0 +1,7 @@
+<% if difficulty == "free" %>
+  <p>フリーテーマ入力</p>
+  <%= text_field_tag :theme, params[:theme], class: "block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" %>
+<% else %>
+  <p>テーマ選択</p>
+  <%= select_tag "theme", options_for_select(themes), class: "block appearance-none w-full bg-white border border-gray-300 hover:border-gray-500 px-4 py-2 pr-8 rounded shadow leading-tight focus:outline-none focus:shadow-outline" %>
+<% end %>
