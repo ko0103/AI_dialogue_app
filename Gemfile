@@ -61,3 +61,6 @@ end
 gem "devise"
 
 gem "dotenv-rails"
+
+# ランダムな単語生成に
+gem "faker"
