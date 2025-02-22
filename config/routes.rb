@@ -19,7 +19,6 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "top_pages#top"
   resources :homes, only: [ :index ]
-  get "homes/update_theme"
 
   # chat_session
   get "/chats", to: "chats#index"
@@ -27,5 +26,6 @@ Rails.application.routes.draw do
   get "/chats/new", to: "chats#new"
 
   # score
-  get "score", to: "scores#show"
+  get "scores", to: "scores#show"
+  get "scores/index", to: "scores#index"
 end

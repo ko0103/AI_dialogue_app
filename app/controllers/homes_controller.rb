@@ -4,7 +4,7 @@ class HomesController < ApplicationController
     @themes = generate_themes(@difficulty)
     respond_to do |format|
       format.html
-      format.turbo_stream { render turbo_stream: turbo_stream.replace("theme_options", partial: "homes/theme_option", locals: { themes: @themes}) }
+      format.turbo_stream { render turbo_stream: turbo_stream.replace("theme_options", partial: "homes/theme_option", locals: { themes: @themes, difficulty: @difficulty }) }
     end
   end
 
@@ -12,13 +12,13 @@ class HomesController < ApplicationController
 
   def generate_themes(difficulty)
     @free_theme = difficulty == "free"
-    themes = case @difficulty
+    themes = case difficulty
     when "easy"
-      [Faker::Sport.sport, Faker::JapaneseMedia::StudioGhibli.movie]
+      [ Faker::Sport.sport, Faker::JapaneseMedia::StudioGhibli.movie ]
     when "normal"
-      [Faker::Book.title, Faker::Commerce.department]
+      [ Faker::Book.title, Faker::Commerce.department ]
     when "hard"
-      [Faker::Color.color_name, Faker::Emotion.noun, Faker::Space.planet]
+      [ Faker::Color.color_name, Faker::Emotion.noun, Faker::Space.planet ]
     when "free"
       []
     end
