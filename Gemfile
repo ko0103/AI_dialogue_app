@@ -64,3 +64,6 @@ gem "dotenv-rails"
 
 # ランダムな単語生成に
 gem "faker"
+
+# OGP
+gem "meta-tags", require: "meta_tags"
