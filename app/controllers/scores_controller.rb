@@ -13,6 +13,8 @@ class ScoresController < ApplicationController
       @chat_session = ChatSession.find_by(id: chat_session_id)
       if @chat_session
         @score = session[:chat_score]
+        @description = "あなたの今回のスコアは#{@score}点でした！"
+        set_meta_tags(description: @description, twitter: { card: "summary_large_image", image: "AI_dialogue.png" })
       else
         flash[:error] = "チャットセッションが見つかりません"
         redirect_to homes_path and return
