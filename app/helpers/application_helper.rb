@@ -20,6 +20,7 @@ module ApplicationHelper
       twitter: {
         card: "summary_large_image",
         site: "@https://x.com/NoobOkamot",
+        description: "AIとのチャットを通じて思考整理や理論的な返答を訓練することを目的としたアプリです。",
         image: image_url("AI_dialogue.png")
       }
     }
