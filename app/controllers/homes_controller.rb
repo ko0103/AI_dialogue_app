@@ -2,10 +2,12 @@ class HomesController < ApplicationController
   def index
     @difficulty = params[:difficulty] || "easy"
     @themes = generate_themes(@difficulty)
-    respond_to do |format|
-      format.html
-      format.turbo_stream { render turbo_stream: turbo_stream.replace("theme_options", partial: "homes/theme_option", locals: { themes: @themes, difficulty: @difficulty }) }
-    end
+  end
+
+  def theme_options
+    @difficulty = params[:difficulty] || "easy"
+    @themes = generate_themes(@difficulty)
+    render turbo_stream: turbo_stream.replace("theme_options", partial: "homes/theme_option", locals: { themes: @themes, difficulty: @difficulty })
   end
 
   private

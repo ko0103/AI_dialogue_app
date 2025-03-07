@@ -2,7 +2,8 @@ Rails.application.routes.draw do
   get "scores/show"
   devise_for :users, controllers: {
     registrations: "users/registrations",
-    sessions: "users/sessions"
+    sessions: "users/sessions",
+    passwords: "users/passwords"
   }
   resources :tasks
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -18,7 +19,10 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root "top_pages#top"
-  resources :homes, only: [ :index ]
+
+  # homes
+  get "/homes", to: "homes#index"
+  get "/homes/theme_options", to: "homes#theme_options", as: "homes_theme_options"
 
   # chat_session
   get "/chats", to: "chats#index"
