@@ -1,6 +1,6 @@
 databases:
   - name: AI_dialogue_app_DB
-    databaseName: ai_dialogue_app_vkbh
+    databaseName: ai_dialogue_app_4tve
     user: AI_dialogue_app
     region: singapore
 
