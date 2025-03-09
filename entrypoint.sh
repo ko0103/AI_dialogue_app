@@ -1,4 +1,5 @@
 #!/bin/bash
+bundle exec rails db:migrate
 # PATH環境変数の確認
 echo $PATH
 
