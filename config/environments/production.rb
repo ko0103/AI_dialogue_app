@@ -114,4 +114,11 @@ Rails.application.configure do
     authentication:       "plain",
     enable_starttls_auto: true
   }
+
+  # 独自ドメイン設定
+  config.application.configure do
+    config.hosts = [
+      "ai-dialogue.jp",
+      "www.ai-dialogue-app-1.onrender.com"
+    ]
 end
