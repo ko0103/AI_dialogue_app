@@ -116,6 +116,6 @@ Rails.application.configure do
   }
 
   # 独自ドメイン設定
+  config.hosts << "ai-dialogue-app-1.onrender.com"
   config.hosts << "ai-dialogue.jp"
-  config.hosts << "www.ai-dialogue.jp"
 end
