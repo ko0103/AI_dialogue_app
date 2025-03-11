@@ -121,4 +121,5 @@ Rails.application.configure do
       "ai-dialogue.jp",
       "www.ai-dialogue-app-1.onrender.com"
     ]
+  end
 end
