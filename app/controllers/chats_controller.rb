@@ -71,7 +71,7 @@ class ChatsController < ApplicationController
       @score = session[:chat_score]
       @message_count = message_count
 
-      redirect_to score_path and return
+      redirect_to scores_path and return
     end
 
     # ユーザーメッセージの保存
@@ -127,8 +127,8 @@ class ChatsController < ApplicationController
       partial: "chats/chat_log",
       locals: { chat_logs: @chat_logs, message_count: @message_count }
     ),
-    (chat_session.messages.count < 10 ? turbo_stream.update("chat_form", partial: "chats/chat_form") :
-    turbo_stream.update("chat-form", partial: "chats/score_link", locals: { chat_session: chat_session }))
+    (chat_session.messages.count < 10 ? turbo_stream.update("chat-form", partial: "chats/chat_form") :
+    turbo_stream.replace("chat-form", partial: "chats/score_link", locals: { chat_session: chat_session }))
     ]
   end
 end
