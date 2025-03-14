@@ -6,16 +6,22 @@
       <h2 id="chat-theme" class="text-2xl font-bold">テーマが設定されていません</h2>
     <% end %>
   </div>
-  <div id="chat-log" class="space-y-2 mb-4">
-    <% if @chat_logs %>
-      <%= render partial: "chat_log", locals: { chat_logs: @chat_logs } %>
-    <% end %>
-  </div>
-  <div id="chat-form">
-    <% if @chat_session.present? && @chat_session.messages.count < 10 %>
-      <%= render partial: "chats/chat_form" %>
-    <% else %>
-      <%= render partial: "chats/score_link", locals: { chat_session: @chat_session } %>
-    <% end %>
-  </div>
+  <turbo-frame id="chat-log">
+    <div class="space-y-2 mb-4">
+      <% if @chat_logs.present? %>
+        <%= render partial: "chats/chat_log", locals: { chat_logs: @chat_logs } %>
+      <% else %>
+        <p>まだメッセージはありません</p>
+      <% end %>
+    </div>
+  </turbo-frame>
+  <turbo-frame id="chat-form">
+    <div>
+      <% if @chat_session.present? && @chat_session.messages.count < 10 %>
+        <%= render partial: "chats/chat_form" %>
+      <% else %>
+        <%= render partial: "chats/score_link", locals: { chat_session: @chat_session } %>
+      <% end %>
+    </div>
+  </turbo-frame>
 </div>
