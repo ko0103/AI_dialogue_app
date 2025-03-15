@@ -67,3 +67,8 @@ gem "faker"
 
 # OGP
 gem "meta-tags", require: "meta_tags"
+
+# googleログイン
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
+gem "omniauth"
