@@ -8,6 +8,9 @@ class User < ApplicationRecord
   has_many :chat_sessions
   has_many :messages
 
+  validates :name, presence: true
+  validates :name, length: { maximum: 64 }
+
   def self.from_omniauth(auth)
     data = auth.info
     user = User.where(email: data["email"]).first
