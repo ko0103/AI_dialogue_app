@@ -1,6 +1,6 @@
 class HomesController < ApplicationController
   before_action :authenticate_user!
-  
+
   def index
     @error_message = session.delete(:error_message)
     @difficulty = params[:difficulty] || "easy"
