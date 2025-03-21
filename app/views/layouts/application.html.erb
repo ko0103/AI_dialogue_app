@@ -17,6 +17,16 @@
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", type: "module" %>
     <%= display_meta_tags(default_meta_tags) %>
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-DLX8NMJLYQ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-DLX8NMJLYQ');
+    </script>
   </head>
 
   <body class="bg-emerald-400">
@@ -24,6 +34,12 @@
       <header class="flex items-center justify-between h-24 bg-sky-950">
         <%= render "shared/header" %>
       </header>
+      <% if flash[:notice] %>
+        <p class="notice"><%= notice %></p>
+      <% end %>
+      <% if flash[:alert] %>
+        <p class="alert"><%= alert %></p>
+      <% end %>
       <main class="flex-grow">
         <%= yield %>
       </main>
