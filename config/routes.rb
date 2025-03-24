@@ -33,7 +33,6 @@ Rails.application.routes.draw do
   get "scores", to: "scores#show"
   get "scores/index", to: "scores#index"
 
-  
   # get to rule and policy
   get "/rule", to: "top_pages#rule", as: "rule"
   get "/policy", to: "top_pages#policy", as: "policy"
