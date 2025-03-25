@@ -45,6 +45,9 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+
+  gem "rspec-rails"
+  gem "factory_bot_rails"
 end
 
 group :development do
@@ -56,9 +59,12 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "webdrivers"
 end
 
 gem "devise"
+gem "devise-i18n"
+gem "rails-i18n"
 
 gem "dotenv-rails"
 
@@ -67,3 +73,8 @@ gem "faker"
 
 # OGP
 gem "meta-tags", require: "meta_tags"
+
+# googleログイン
+gem "omniauth-google-oauth2"
+gem "omniauth-rails_csrf_protection"
+gem "omniauth"

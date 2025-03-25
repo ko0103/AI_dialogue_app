@@ -16,6 +16,11 @@
   </div>
   <div class="w-1/2 p-4">
     <div class="relative inline-block text-left">
+      <% if @error_message %>
+        <div class="error" style="color: red;">
+          <%= @error_message %>
+        </div>
+      <% end %>
       <p>難易度選択</p>
         <div>
           <%= link_to "初級", homes_theme_options_path(difficulty: "easy"), class: "button", data: { turbo_frame: "theme_options" } %>

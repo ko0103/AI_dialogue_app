@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  get "scores/show"
   devise_for :users, controllers: {
     registrations: "users/registrations",
     sessions: "users/sessions",
-    passwords: "users/passwords"
+    passwords: "users/passwords",
+    omniauth_callbacks: "users/omniauth_callbacks"
   }
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -32,4 +32,8 @@ Rails.application.routes.draw do
   # score
   get "scores", to: "scores#show"
   get "scores/index", to: "scores#index"
+
+  # get to rule and policy
+  get "/rule", to: "top_pages#rule", as: "rule"
+  get "/policy", to: "top_pages#policy", as: "policy"
 end

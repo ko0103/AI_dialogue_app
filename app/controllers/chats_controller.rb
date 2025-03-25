@@ -41,7 +41,7 @@ class ChatsController < ApplicationController
       session[:chat_session_id] = chat_session.id
       redirect_to chats_path
     else
-      flash[:error] = "難易度とテーマを選択してください"
+      session[:error_message] = "テーマを選択してください"
       redirect_to homes_path
     end
   end
