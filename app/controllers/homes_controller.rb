@@ -3,12 +3,13 @@ class HomesController < ApplicationController
 
   def index
     @error_message = session.delete(:error_message)
-    @difficulty = params[:difficulty] || "easy"
+    @difficulty = session[:difficulty] || "easy"
     @themes = generate_themes(@difficulty)
   end
 
   def theme_options
-    @difficulty = params[:difficulty] || "easy"
+    @difficulty = params[:difficulty]
+    session[:difficulty] = @difficulty
     @themes = generate_themes(@difficulty)
     render turbo_stream: turbo_stream.replace("theme_options", partial: "homes/theme_option", locals: { themes: @themes, difficulty: @difficulty })
   end
@@ -19,11 +20,11 @@ class HomesController < ApplicationController
     @free_theme = difficulty == "free"
     themes = case difficulty
     when "easy"
-      [ Faker::Sport.sport, Faker::JapaneseMedia::StudioGhibli.movie ]
+      [ "スポーツ： #{Faker::Sport.sport}", "ジブリ作品： #{Faker::JapaneseMedia::StudioGhibli.movie}" ]
     when "normal"
-      [ Faker::Book.title, Faker::Commerce.department ]
+      [ "文学作品： #{Faker::Book.title}", "商品： #{Faker::Commerce.product_name}", "素材： #{Faker::Commerce.material}" ]
     when "hard"
-      [ Faker::Color.color_name, Faker::Emotion.noun, Faker::Space.planet ]
+      [ "色： #{Faker::Color.color_name}", "感情： #{Faker::Emotion.noun}", "惑星： #{Faker::Space.planet}" ]
     when "free"
       []
     end

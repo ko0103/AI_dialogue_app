@@ -21,8 +21,8 @@ Rails.application.routes.draw do
   root "top_pages#top"
 
   # homes
-  get "/homes", to: "homes#index"
   get "/homes/theme_options", to: "homes#theme_options", as: "homes_theme_options"
+  get "/homes", to: "homes#index"
 
   # chat_session
   get "/chats", to: "chats#index"

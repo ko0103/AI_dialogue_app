@@ -1,48 +1,49 @@
-<main class="flex">
-  <div class="w-1/2 p-4">
-    <div class="border-l-4 border-blue-500 pl-4 py-2 shadow-xl rounded-md text-center">
-      <h2 class="text-3xl">哲学対話とは</h2>
-      <h3 class="text-2xl">1. 何を言ってもいい。</h3>
-      <h3 class="text-2xl">2. 人の言うことに対して否定的な態度をとらない。</h3>
-      <h3 class="text-2xl">3. 発言せず、ただ聞いているだけでもいい。</h3>
-      <h3 class="text-2xl">4. お互いに問いかけるようにする。</h3>
-      <h3 class="text-2xl">5. 知識ではなく、自分の経験に即して話す。</h3>
-      <h3 class="text-2xl">6. 話がまとまらなくてもいい。</h3>
-      <h3 class="text-2xl">7. 意見が変わってもいい。</h3>
-      <h3 class="text-2xl">8. 分からなくなってもいい。</h3>
-      <p class="text-xl">本アプリは上記のルールにならってAIと対話をするチャットアプリとなっています。</p>
-      <p class="text-xl">チャット回数は10回まで、チャットが終わるとそれまでの対話が論理的に出来ていたかを採点してもらえます。</p>
-    </div>
+<div class="container mx-auto flex flex-col items-center h-[40vh] justify-center">
+  <div class="chat chat-start">
+    <i class="fa-regular fa-face-kiss fa-3x"></i>
+    <div class="chat-bubble bg-blue-200 text-gray-800 font-bold mb-4 mx-8">このAI_dialogueって何？</div>
   </div>
-  <div class="w-1/2 p-4">
-    <div class="relative inline-block text-left">
+  <div class="chat chat-end">
+    <div class="chat-bubble bg-yellow-200 text-gray-800 font-bold text-xl ml-14">AIとのチャットでコミュニケーション力を測れるアプリです!</div>
+    <i class="fa-regular fa-face-grin-wink fa-3x"></i>
+  </div>
+</div>
+<main class="flex w-full flex-col lg:flex-row">
+  <div class="card bg-green-200 rounded-box grid h-80 w-full lg:w-1/2 place-items-center">
+    <h2 class="text-lg font-bold mx-4">---チャットの始め方---</h2>
+    <ul class="list-disc p-2 mx-8 font-bold text-lg">
+      <li>右のテーマ欄から難易度と、難易度ごとにランダムに選出されたテーマを選択して「対話開始」をクリックするとチャットが開始します</li>
+      <li>「フリーテーマ」ではユーザーが自由にテーマを選択してお話しできます</li>
+      <li>1回のチャットで送れるメッセージの回数は10回まで</li>
+      <li>1回のメッセージで送れる文字数は最大で140文字まで</li>
+      <li>10回のメッセージの応酬が終わると、それまでの会話について採点されます</li>
+      <li>10回目までメッセージを送ることで採点されるので途中でやめると採点されません</li>
+      <li>難易度ごとに上位10名がランキングに表示されます!</li>
+    </ul>
+    <h2 class="text-xl font-bold  mx-2">コミュニケーションの向上や思考整理などに活用してください!!</h2>
+  </div>
+  <div class="divider divider-primary lg:divider-horizontal"></div>
+  <div class="card bg-lime-200 rounded-box grid h-80 w-full lg:w-1/2 place-items-center">
+    <div class="relative inline-block text-xl">
       <% if @error_message %>
-        <div class="error" style="color: red;">
+        <div class="error text-red-600">
           <%= @error_message %>
         </div>
       <% end %>
-      <p>難易度選択</p>
-        <div>
-          <%= link_to "初級", homes_theme_options_path(difficulty: "easy"), class: "button", data: { turbo_frame: "theme_options" } %>
+      <div class="flex justify-center items-center">
+        <p class="font-bold">難易度選択</p>
+        <div class="flex flex-row items-center">
+          <%= link_to "初級", homes_theme_options_path(difficulty: "easy"), class: "button bg-blue-500 rounded-full text-white font-bold py-2 px-2 mx-2", data: { turbo_frame: "theme_options" } %>
+          <%= link_to "中級", homes_theme_options_path(difficulty: "normal"), class: "button bg-green-500 rounded-full text-white font-bold py-2 px-2 mx-2", data: { turbo_frame: "theme_options" } %>
+          <%= link_to "上級", homes_theme_options_path(difficulty: "hard"), class: "button bg-orange-500 rounded-full text-white font-bold py-2 px-2 mx-2", data: { turbo_frame: "theme_options" } %>
+          <%= link_to "フリーテーマ", homes_theme_options_path(difficulty: "free"), class: "button bg-zinc-500 rounded-full text-white font-bold py-2 px-2 mx-2", data: { turbo_frame: "theme_options" } %>
         </div>
-        <div>
-          <%= link_to "中級", homes_theme_options_path(difficulty: "normal"), class: "button", data: { turbo_frame: "theme_options" } %>
-        </div>
-        <div>
-          <%= link_to "上級", homes_theme_options_path(difficulty: "hard"), class: "button", data: { turbo_frame: "theme_options" } %>
-        </div>
-        <div>
-          <%= link_to "フリーテーマ", homes_theme_options_path(difficulty: "free"), class: "button", data: { turbo_frame: "theme_options" } %>
-        </div>
+      </div>
 
         <%= form_with url: chats_new_path, method: :get do |form| %>
           <turbo-frame id="theme_options">
-            <%= render partial: "homes/theme_option", locals: { themes: @themes, difficulty: @difficulty } %>
+            <%= render partial: "homes/theme_option", locals: { themes: [], difficulty: @difficulty } %>
           </turbo-frame>
-          <%= hidden_field_tag :difficulty, @difficulty %>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-              <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"><path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/></svg>
-            </div>
         <%= form.submit "対話開始", class: "mt-4 button bg-blue-500 text-white rounded px-4 py-2" %>
       <% end %>
     </div>
