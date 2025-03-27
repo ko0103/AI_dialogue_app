@@ -34,14 +34,14 @@ class ChatsController < ApplicationController
 
   def new
     user = current_user
-    difficulty = params[:difficulty]
+    difficulty = session[:difficulty]
     theme = params[:theme]
     if difficulty.present? && theme.present?
       chat_session = ChatSession.create(user: user, difficulty: difficulty, theme: theme)
       session[:chat_session_id] = chat_session.id
       redirect_to chats_path
     else
-      session[:error_message] = "テーマを選択してください"
+      session[:error_message] = "テーマを選択してください!"
       redirect_to homes_path
     end
   end

@@ -1,8 +1,6 @@
 <header class="text-gray-600 body-font">
   <div class="container mx-2 flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
-    <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
-      <span class="ml-3 text-2xl font-teko">AI_dialogue</span>
-    </a>
+    <%= link_to "AI_dialogue", root_path, class: "flex title-font font-medium items-center text-white mb-4 md:mb-0 ml-3 text-2xl font-teko" %>
     <%= link_to "利用規約", rule_path, class:"text-white rounded-lg ml-4 hover:bg-neutral-800" %>
     <%= link_to "プライバシーポリシー", policy_path, class:"text-white rounded-lg ml-4 hover:bg-neutral-800" %>
     <% if user_signed_in? %>

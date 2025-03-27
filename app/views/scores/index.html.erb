@@ -1,75 +1,74 @@
-<!-- Pricing -->
 <div class="max-w-[85rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-  <!-- Title -->
   <div class="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
     <h2 class="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">スコア ランキング</h2>
   </div>
-  <!-- End Title -->
 
-  <!-- Grid -->
-  <div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:items-center">
-    <!-- Card -->
-    <div class="flex flex-col border border-gray-500 text-center rounded-xl p-8 dark:border-neutral-800">
-      <h4 class="font-medium text-lg text-gray-800 dark:text-neutral-200">初級</h4>
+  <div class="mt-8 grid sm:grid-cols-1 lg:grid-cols-2 gap-2 lg:items-center">
+    <div class="flex flex-col border-4 border-double border-blue-500 text-center rounded-xl p-8">
+      <h4 class="font-bold text-2xl text-gray-800">初級</h4>
 
-      <ol class="mt-7 space-y-2.5 text-sm">
+      <ol class="list-decimal mt-7 space-y-2.5 text-lg">
         <% @easy_scores.each do |chat_session| %>
-          <li class="flex gap-x-2">
-            <span class="text-gray-800 dark:text-neutral-400">
-              ユーザー: <%= chat_session.user_name %>, テーマ: <%= chat_session.theme %>, スコア: <%= chat_session.score_display %>
+          <li>
+            <span class="text-gray-800 text-pretty underline">
+              ユーザー: <span class="font-bold"><%= chat_session.user_name %></span>
+              テーマ<span class="font-bold mx-2"><%= chat_session.theme %></span>
+              スコア: <span class="font-bold"><%= chat_session.score_display %></span>
             </span>
           </li>
         <% end %>
       </ol>
     </div>
-    <!-- End Card -->
 
-    <!-- Card -->
-    <div class="flex flex-col border border-gray-500 text-center rounded-xl p-8 dark:border-neutral-800">
-      <h4 class="font-medium text-lg text-gray-800 dark:text-neutral-200">中級</h4>
+    <div class="flex flex-col border-4 border-double border-green-500 text-center rounded-xl p-8">
+      <h4 class="font-bold text-2xl text-gray-800">中級</h4>
 
-      <ol class="mt-7 space-y-2.5 text-sm">
+      <ol class="list-decimal mt-7 space-y-2.5 text-lg">
         <% @normal_scores.each do |chat_session| %>
-          <li class="flex gap-x-2">
-            <span class="text-gray-800 dark:text-neutral-400">
-              ユーザー: <%= chat_session.user_name %>, テーマ: <%= chat_session.theme %>, スコア: <%= chat_session.score_display %>
+          <li>
+            <span class="text-gray-800 text-pretty underline">
+              ユーザー: <span class="font-bold"><%= chat_session.user_name %></span>
+              テーマ<span class="font-bold mx-2"><%= chat_session.theme %></span>
+              スコア: <span class="font-bold"><%= chat_session.score_display %></span>
             </span>
           </li>
         <% end %>
       </ol>
     </div>
-    <!-- End Card -->
 
-    <!-- Card -->
-    <div class="flex flex-col border border-gray-500 text-center rounded-xl p-8 dark:border-neutral-800">
-      <h4 class="font-medium text-lg text-gray-800 dark:text-neutral-200">上級</h4>
+    <div class="flex flex-col border-4 border-double border-orange-500 text-center rounded-xl p-8">
+      <h4 class="font-bold text-2xl text-gray-800">上級</h4>
 
-      <ol class="mt-7 space-y-2.5 text-sm">
+      <ol class="list-decimal mt-7 space-y-2.5 text-lg">
         <% @hard_scores.each do |chat_session| %>
-          <li class="flex gap-x-2">
-            <span class="text-gray-800 dark:text-neutral-400">
-              ユーザー: <%= chat_session.user_name %>, テーマ: <%= chat_session.theme %>, スコア: <%= chat_session.score_display %>
+          <li>
+            <span class="text-gray-800 text-pretty underline">
+              ユーザー: <span class="font-bold"><%= chat_session.user_name %></span>
+              テーマ<span class="font-bold mx-2"><%= chat_session.theme %></span>
+              スコア: <span class="font-bold"><%= chat_session.score_display %></span>
             </span>
           </li>
         <% end %>
       </ol>
     </div>
-    <!-- End Card -->
 
-    <!-- Card -->
-    <div class="flex flex-col border border-gray-500 text-center rounded-xl p-8 dark:border-neutral-800">
-      <h4 class="font-medium text-lg text-gray-800 dark:text-neutral-200">フリーテーマ</h4>
+    <div class="flex flex-col border-4 border-double border-zinc-500 text-center rounded-xl p-8">
+      <h4 class="font-bold text-2xl text-gray-800">フリーテーマ</h4>
 
-      <ol class="mt-7 space-y-2.5 text-sm">
+      <ol class="list-decimal mt-7 space-y-2.5 text-lg">
         <% @free_scores.each do |chat_session| %>
-          <li class="flex gap-x-2">
-            <span class="text-gray-800 dark:text-neutral-400">
-              ユーザー: <%= chat_session.user_name %>, テーマ: <%= chat_session.theme %>, スコア: <%= chat_session.score_display %>
+          <li>
+            <span class="text-gray-800 text-pretty underline">
+              ユーザー: <span class="font-bold"><%= chat_session.user_name %></span>
+              テーマ<span class="font-bold mx-2"><%= chat_session.theme %></span>
+              スコア: <span class="font-bold"><%= chat_session.score_display %></span>
             </span>
           </li>
         <% end %>
       </ol>
     </div>
-    <!-- End Card -->
   </div>
-  <!-- End Grid -->
+  <div class="flex justify-center mt-8">
+      <%= link_to "ホームに戻る", homes_path, class: "bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded" %>
+  </div>
+</div>
