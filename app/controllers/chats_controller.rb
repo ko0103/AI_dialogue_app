@@ -38,8 +38,14 @@ class ChatsController < ApplicationController
     theme = params[:theme]
     if difficulty.present? && theme.present?
       chat_session = ChatSession.create(user: user, difficulty: difficulty, theme: theme)
-      session[:chat_session_id] = chat_session.id
-      redirect_to chats_path
+      if chat_session.valid?
+        chat_session.save
+        session[:chat_session_id] = chat_session.id
+        redirect_to chats_path
+      else
+        session[:error_message] = "テーマは20文字までです!"
+        redirect_to homes_path
+      end
     else
       session[:error_message] = "テーマを選択してください!"
       redirect_to homes_path
@@ -50,7 +56,6 @@ class ChatsController < ApplicationController
     message = params[:message]
     user = current_user
     chat_session_id = session[:chat_session_id]
-    Rails.logger.debug "ChatsController session_id: #{session.id}"
 
     if chat_session_id.nil?
       return render json: { error: "チャットセッションがありません" }, status: :bad_request
@@ -91,10 +96,8 @@ class ChatsController < ApplicationController
 
     if theme.present?
       response = Net::HTTP.post(uri, { message: message, theme: theme, chatHistory: chat_history.map { |chat| chat[:content] }, isLastMessage: is_last_message }.to_json, "Content-Type" => "application/json")
-      Rails.logger.debug "Sent to Gemini API: #{ { message: message, theme: theme, chatHistory: chat_history.map { |chat| chat[:content] }, isLastMessage: is_last_message }.to_json }"
     else
       response = Net::HTTP.post(uri, { message: message, chatHistory: chat_history.map { |chat| chat[:content] }, isLastMessage: is_last_message }.to_json, "Content-Type" => "application/json")
-      Rails.logger.debug "Sent to Gemini API: #{ { message: message, chatHistory: chat_history.map { |chat| chat[:content] }, isLastMessage: is_last_message }.to_json }"
     end
 
     if response.is_a?(Net::HTTPSuccess)
