@@ -1,11 +1,9 @@
-<header class="text-gray-600 body-font">
-  <div class="container mx-2 flex flex-wrap p-5 flex-col md:flex-row items-center justify-between">
-    <%= link_to "AI_dialogue", root_path, class: "flex title-font font-medium items-center text-white mb-4 md:mb-0 ml-3 text-2xl font-teko" %>
-    <%= link_to "利用規約", rule_path, class:"text-white rounded-lg ml-4 hover:bg-neutral-800" %>
-    <%= link_to "プライバシーポリシー", policy_path, class:"text-white rounded-lg ml-4 hover:bg-neutral-800" %>
-    <% if user_signed_in? %>
-      <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete },
-      class: "justify-end h-12 overflow-hidden rounded bg-neutral-950 px-5 py-2.5 text-white transition-all duration-200 hover:bg-neutral-800 hover:ring-offset-2 active:ring-2 active:ring-neutral-800" %>
-    <% end %>
-  </div>
-</header>
+<div class="container mx-2 flex flex-wrap p-5 md:flex-row sm:flex-row items-center">
+  <%= link_to "AI_dialogue", root_path, class: "flex title-font items-center text-white mb-4 md:mb-0 ml-3 text-4xl font-teko" %>
+  <%= link_to "利用規約", rule_path, class:"text-white text-sm rounded-lg ml-16 hover:bg-neutral-800" %>
+  <%= link_to "プライバシーポリシー", policy_path, class:"text-white text-sm rounded-lg ml-16 hover:bg-neutral-800" %>
+  <% if user_signed_in? %>
+    <%= link_to "ログアウト", destroy_user_session_path, data: { turbo_method: :delete },
+    class: "ml-auto justify-end h-12 overflow-hidden rounded bg-neutral-950 px-5 py-2.5 text-white transition-all duration-200 hover:bg-neutral-800 hover:ring-offset-2 active:ring-2 active:ring-neutral-800" %>
+  <% end %>
+</div>

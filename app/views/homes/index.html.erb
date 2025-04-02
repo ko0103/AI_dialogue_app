@@ -32,7 +32,7 @@
       <% end %>
       <div class="flex justify-center items-center">
         <p class="font-bold">難易度選択</p>
-        <div class="flex flex-row items-center">
+        <div class="flex flex-row items-center mx-4 my-8">
           <%= link_to "初級", homes_theme_options_path(difficulty: "easy"), class: "button bg-blue-500 rounded-full text-white font-bold py-2 px-2 mx-2", data: { turbo_frame: "theme_options" } %>
           <%= link_to "中級", homes_theme_options_path(difficulty: "normal"), class: "button bg-green-500 rounded-full text-white font-bold py-2 px-2 mx-2", data: { turbo_frame: "theme_options" } %>
           <%= link_to "上級", homes_theme_options_path(difficulty: "hard"), class: "button bg-orange-500 rounded-full text-white font-bold py-2 px-2 mx-2", data: { turbo_frame: "theme_options" } %>
