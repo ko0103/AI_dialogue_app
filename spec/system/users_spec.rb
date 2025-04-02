@@ -24,7 +24,7 @@ RSpec.describe "Users", type: :system do
         fill_in "user_password_confirmation", with: "runtekun"
         click_button "新規登録"
         expect(page).to have_content("1 件のエラーが発生したため ユーザー は保存されませんでした。")
-        expect(page).to have_content("Eメールを入力してください")
+        expect(page).to have_content("メールアドレスを入力してください")
         expect(current_path).to eq "/users/sign_up"
       end
 
@@ -36,7 +36,7 @@ RSpec.describe "Users", type: :system do
         fill_in "user_password_confirmation", with: "runtekun"
         click_button "新規登録"
         expect(page).to have_content("1 件のエラーが発生したため ユーザー は保存されませんでした。")
-        expect(page).to have_content("Eメールはすでに存在します")
+        expect(page).to have_content("メールアドレスはすでに存在します")
         expect(current_path).to eq "/users/sign_up"
       end
 
