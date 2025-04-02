@@ -21,7 +21,7 @@ RSpec.describe "UserSessions", type: :system do
         fill_in "user_email", with: "example@example.com"
         fill_in "user_password", with: user.password
         click_button "ログイン"
-        expect(page).to have_content("Eメールまたはパスワードが違います。")
+        expect(page).to have_content("メールアドレスまたはパスワードが違います。")
         expect(current_path).to eq "/users/sign_in"
       end
 
@@ -29,7 +29,7 @@ RSpec.describe "UserSessions", type: :system do
         fill_in "user_email", with: user.email
         fill_in "user_password", with: "password"
         click_button "ログイン"
-        expect(page).to have_content("Eメールまたはパスワードが違います。")
+        expect(page).to have_content("メールアドレスまたはパスワードが違います。")
         expect(current_path).to eq "/users/sign_in"
       end
     end
