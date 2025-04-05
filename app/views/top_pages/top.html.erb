@@ -1,7 +1,6 @@
-<div class="relative min-h-screen">
-  <%= image_tag 'AI_dialogue.png', class: "absolute bg-cover inset-0" %>
-  <div class="space-x-4 flex flex-row justify-center items-end h-screen">
-    <div class="absolute bottom-36">
+
+  <div class="space-x-4 flex flex-row justify-center items-center min-h-screen">
+    <div class="translate-y-16">
       <% if user_signed_in? %>
         <%= link_to "ホーム画面", homes_path, class: "bg-green-500 hover:bg-green-400 text-white rounded px-4 py-2" %>
       <% else %>
@@ -10,4 +9,4 @@
       <% end %>
     </div>
   </div>
-</div>
+
