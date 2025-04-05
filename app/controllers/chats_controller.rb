@@ -43,7 +43,7 @@ class ChatsController < ApplicationController
         session[:chat_session_id] = chat_session.id
         redirect_to chats_path
       else
-        session[:error_message] = "テーマは20文字までです!"
+        session[:error_message] = "テーマは30文字までです!"
         redirect_to homes_path
       end
     else
