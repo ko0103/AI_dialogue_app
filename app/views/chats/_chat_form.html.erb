@@ -1,4 +1,11 @@
-<form method="post" class="flex space-x-2" data-turbo="true">
-  <input type="text" name="message" id="message" class="border border-gray-300 rounded-md p-2 flex-grow mt-4", placeholder="メッセージを入力（140字以内）">
-  <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white rounded-md p-2">送信</button>
+<form method="post" class="flex flex-col" data-turbo="true">
+  <% if flash[:alert] %>
+    <div class="font-bold mx-auto text-center bg-red-500">
+      <p class="alert py-2 bg-white text-red-600"><%= flash[:alert] %></p>
+    </div>
+  <% end %>
+  <div class="flex flex-row items-center justify-center space-x-4">
+    <input type="text" name="message" id="message" class="border border-gray-300 resize-y rounded w-2/3 sm:w-1/2 py-2 px-4 mt-4", placeholder="メッセージを入力（140字以内）" />
+    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white rounded h-10 w-24 py-2 px-4 mt-4">送信</button>
+  </div>
 </form>

@@ -22,7 +22,6 @@ def create_users
 end
 
 def create_session_and_score(users)
-
   users.each do |user|
     chat_session_easy = ChatSession.create!(
       user_id: user.id,

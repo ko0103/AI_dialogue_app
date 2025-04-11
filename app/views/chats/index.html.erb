@@ -11,7 +11,7 @@
       <% if @chat_logs.present? %>
         <%= render partial: "chats/chat_log", locals: { chat_logs: @chat_logs } %>
       <% else %>
-        <p>まだメッセージはありません</p>
+        <p class="text-center font-semibold">まだメッセージはありません</p>
       <% end %>
     </div>
   </turbo-frame>

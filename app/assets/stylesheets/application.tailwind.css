@@ -6,7 +6,7 @@
 
 @layer components {
   .chat-message {
-    @apply rounded-lg p-2 max-w-xl border-2 border-gray-600 break-words;
+    @apply rounded-3xl p-2 max-w-xl border-2 border-gray-600 whitespace-pre-line;
   }
   .user-message {
     @apply bg-blue-200 text-gray-800 ml-auto border-2 border-gray-600;
