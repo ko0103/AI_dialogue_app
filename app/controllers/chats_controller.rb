@@ -12,7 +12,7 @@ class ChatsController < ApplicationController
         @chat_logs = @chat_session.messages.order(created_at: :asc).limit(10).map do |message|
         gemini_response = message.ai_response
         user_log = { role: "user", content: "<p>#{message.content}</p>" }
-        gemini_log = gemini_response ? { role: "gemiini", content: "<p>#{gemini_response.content}</p>" } : nil
+        gemini_log = gemini_response ? { role: "gemini", content: "<p>#{gemini_response.content}</p>" } : nil
         [ user_log, gemini_log ].compact
         end.flatten
         @current_theme = @chat_session.theme

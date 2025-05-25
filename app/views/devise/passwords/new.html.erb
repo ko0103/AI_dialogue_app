@@ -1,16 +1,22 @@
-<h2>Forgot your password?</h2>
+<div class="min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+    <h2 class="text-2xl font-bold mb-6 text-center text-gray-800">パスワードを忘れてしまったら</h2>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="mb-4">
+      <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+        <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+        <div class="field mb-4">
+          <%= f.label :email, class:"mb-2 block text-sm font-medium text-gray-700" %>
+          <%= f.email_field :email, class:"w-full border border-gray-500", autofocus: true, autocomplete: "email" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "パスワード変更をリクエスト", class:"inline-flex w-full items-center justify-center rounded-md bg-yellow-500 p-3 text-white duration-100 ease-in-out hover:bg-yellow-600 focus:outline-none cursor-pointer" %>
+        </div>
+      <% end %>
+    </div>
+
+    <%= render "devise/shared/links" %>
   </div>
-
-  <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
