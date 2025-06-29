@@ -78,3 +78,6 @@ gem "meta-tags", require: "meta_tags"
 gem "omniauth-google-oauth2"
 gem "omniauth-rails_csrf_protection"
 gem "omniauth"
+
+# リファクタリング
+gem "rubocop", require: false

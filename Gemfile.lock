@@ -414,6 +414,7 @@ DEPENDENCIES
   rails (~> 7.2.2, >= 7.2.2.1)
   rails-i18n
   rspec-rails
+  rubocop
   rubocop-rails-omakase
   selenium-webdriver
   sprockets-rails
