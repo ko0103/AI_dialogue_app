@@ -20,6 +20,10 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "top_pages#top"
 
+  # user profile
+  get "users/show", to: "users#show"
+  get "users/edit", to: "users#edit"
+
   # homes
   get "/homes/theme_options", to: "homes#theme_options", as: "homes_theme_options"
   get "/homes", to: "homes#index"
