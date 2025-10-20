@@ -32,7 +32,7 @@ app.post("/chat", async (req, res) => {
     }
 
     // AIの役柄とルール設定
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash", systemInstruction: "あなたは哲学対話のファシリテーターです。ユーザーとの対話を通して、ユーザー自身の考えを深める手助けをしてください。" });
+    const model = genAI.getGenerativeModel({ model: "gemini-2.0-flash", systemInstruction: "あなたは哲学対話のファシリテーターです。ユーザーとの対話を通して、ユーザー自身の考えを深める手助けをしてください。" });
     const generationConfig = {
       maxOutputTokens: 20,
       temperature: 1.2,
